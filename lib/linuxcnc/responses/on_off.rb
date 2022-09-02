@@ -11,11 +11,11 @@ module Linuxcnc
       end
 
       def on?
-        values.include? :on
+        value.include? :on
       end
 
       def off?
-        values.include? :off
+        value.include? :off
       end
     end
   end

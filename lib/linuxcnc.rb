@@ -8,6 +8,7 @@ module Linuxcnc
 end
 
 require "net/telnet"
+require 'active_support/core_ext/object'
 require 'active_support/inflector'
 
 require_relative "linuxcnc/client"

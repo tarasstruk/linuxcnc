@@ -17,9 +17,8 @@ client = Linuxcnc::Client.new #(host: '192.168.2.140', port: 5007)
 #
 # mdi = Linuxcnc::Commands::Mdi.new(client: client)
 
-hs = Linuxcnc::Handshake.new(client: client)
+# hs = Linuxcnc::Handshake.new(client: client)
 
-m = Linuxcnc::Machine.new(client: client)
-hs.perform
+m = Linuxcnc::Machine.new
 
 binding.pry

@@ -1,12 +1,21 @@
 module Linuxcnc
   class Client
+
+    attr_reader :connection
+
     def initialize(host: (ENV["LINUXCNC_HOST"] || "localhost"), port: (ENV["LINUXCNC_PORT"] || 5007))
       @host = host
       @port = port
     end
 
-    def connection
-      @connection ||= Net::Telnet::new(
+    def disconnect
+      connection.try :close
+      @connection = nil
+    end
+
+    def establish_connection
+      disconnect if @connection.present?
+      @connection = Net::Telnet::new(
         "Host"       => @host,           # default: "localhost"
         "Port"       => @port.to_i,      # default: 23
         "Telnetmode" => false,           # default: true
