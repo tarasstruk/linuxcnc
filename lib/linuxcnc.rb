@@ -24,4 +24,6 @@ require_relative "linuxcnc/responses/mode"
 # require_relative "linuxcnc/commands/machine"
 # require_relative "linuxcnc/commands/mode"
 # require_relative "linuxcnc/commands/mdi"
+
+require_relative "linuxcnc/commands"
 require_relative "linuxcnc/machine"
