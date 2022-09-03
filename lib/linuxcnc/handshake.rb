@@ -1,21 +1,19 @@
 module Linuxcnc
   class Handshake
-    HELLO_PASSWORD = "EMC"
-    ENABLE_PASS = "EMCTOO"
-    CLIENT_VERSION = ::Linuxcnc::VERSION
-    CLIENT_NAME = "Ruby"
 
-    def initialize(client:, options: { })
-      @conn = client.connection
+    def initialize(machine:, options: { })
+      @machine = machine
     end
 
     def perform
-      lines = %{
-        hello #{HELLO_PASSWORD} #{CLIENT_NAME} #{CLIENT_VERSION}
-        set enable #{ENABLE_PASS}
-        get enable
-      }
-      @conn.cmd("Match" => /enable on/mi, "String" => lines)
+      answer = @machine.hello.get
+      raise Linuxcnc::Errors::CommandRejected.new("hello") if answer.nak?
+      @machine.echo.set :off
+      answer = @machine.echo.get
+      raise Linuxcnc::Errors::CommandRejected.new("echo") if answer.on?
+      @machine.enable.set
+      answer = @machine.enable.get
+      raise Linuxcnc::Errors::CommandRejected.new("enable") if answer.off?
     end
 
   end

@@ -1,6 +1,6 @@
 module Linuxcnc
   module Responses
-    class AckNak < Base
+    class AckNak < Linuxcnc::Response
 
       def self.pattern
         /ack|nak/mi

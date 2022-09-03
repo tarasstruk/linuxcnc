@@ -1,6 +1,6 @@
 module Linuxcnc
   module Responses
-    class OnOff < Base
+    class OnOff < Linuxcnc::Response
 
       def self.pattern
         /on|off/mi

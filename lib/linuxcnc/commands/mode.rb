@@ -1,25 +1,9 @@
 module Linuxcnc
   module Commands
-    class Mode < Base
-      def name
-        "mode"
-      end
+    class Mode < Linuxcnc::Command
 
-      def target_response_class
-        Linuxcnc::Responses::Mode
-      end
+      self.target = Linuxcnc::Responses::Mode
 
-      def mdi!
-        set "mdi"
-      end
-
-      def auto!
-        set "mdi"
-      end
-
-      def manual!
-        set "mdi"
-      end
     end
   end
 end

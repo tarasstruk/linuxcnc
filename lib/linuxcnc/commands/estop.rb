@@ -1,13 +1,8 @@
 module Linuxcnc
   module Commands
-    class Estop < Base
-      def name
-        "estop"
-      end
+    class Estop < Linuxcnc::Command
 
-      def target_response_class
-        Linuxcnc::Responses::OnOff
-      end
+      self.target = Linuxcnc::Responses::OnOff
 
     end
   end

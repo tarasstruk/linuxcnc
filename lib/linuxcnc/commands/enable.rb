@@ -1,13 +1,15 @@
 module Linuxcnc
   module Commands
-    class Enable < Base
-      def name
-        "enable"
+    class Enable < Linuxcnc::Command
+      self.target = Linuxcnc::Responses::OnOff
+
+      DEFAULT_PASSWORD = "EMCTOO".freeze
+
+
+      def set(params=[DEFAULT_PASSWORD])
+        super
       end
 
-      def target_response_class
-        Linuxcnc::Responses::OnOff
-      end
     end
   end
 end

@@ -1,13 +1,9 @@
 module Linuxcnc
   module Commands
-    class JointPos < Base
-      def name
-        "joint_pos"
-      end
+    class JointPos < Linuxcnc::Command
 
-      def target_response_class
-        Linuxcnc::Responses::Floats
-      end
+      self.target = Linuxcnc::Responses::Floats
+
 
     end
   end

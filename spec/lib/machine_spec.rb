@@ -23,13 +23,13 @@ RSpec.describe Linuxcnc::Machine do
     end
   end
 
-  describe "#hello" do
+  describe "#say_hello" do
     before do
       subject.connect
-      subject.hello
+      subject.say_hello
     end
 
-    it "is not connected" do
+    it "is enabled" do
       expect(subject).to be_enabled
     end
   end

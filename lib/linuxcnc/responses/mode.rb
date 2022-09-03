@@ -1,6 +1,6 @@
 module Linuxcnc
   module Responses
-    class Mode < Base
+    class Mode < Linuxcnc::Response
 
       def self.pattern
         /manual|auto|mdi/mi

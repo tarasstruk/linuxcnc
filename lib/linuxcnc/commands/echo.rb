@@ -1,6 +1,6 @@
 module Linuxcnc
   module Commands
-    class Machine < Linuxcnc::Command
+    class Echo < Linuxcnc::Command
 
       self.target = Linuxcnc::Responses::OnOff
 

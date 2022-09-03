@@ -1,9 +1,15 @@
 module Linuxcnc
   module Commands
 
-    COMMANDS_PATH = File.expand_path(File.join(File.dirname(__FILE__), "commands"))
+    require_relative "response"
+    RESPONSES_PATH = File.expand_path(File.join(File.dirname(__FILE__), "responses")).freeze
+    Dir.glob("*.rb", base: RESPONSES_PATH).each do |file|
+      require_relative "responses/#{file}"
+    end
+
+    require_relative "command"
+    COMMANDS_PATH = File.expand_path(File.join(File.dirname(__FILE__), "commands")).freeze
     COMMAND_NAMES = Dir.glob("*.rb", base: COMMANDS_PATH).map{|file| file.chomp(".rb") }
-    require_relative "commands/#{COMMAND_NAMES.delete 'base'}"
     COMMAND_NAMES.freeze
 
     COMMAND_NAMES.each do |command|

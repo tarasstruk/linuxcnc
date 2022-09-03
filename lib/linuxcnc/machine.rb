@@ -22,8 +22,8 @@ module Linuxcnc
       client.disconnect
     end
 
-    def hello
-      Linuxcnc::Handshake.new(client: client).perform
+    def say_hello
+      Linuxcnc::Handshake.new(machine: self).perform
     end
 
     def enabled?

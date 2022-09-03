@@ -1,9 +1,9 @@
 module Linuxcnc
   module Commands
-    class Mdi < Base
-      def name
-        "mdi"
-      end
+    class Mdi < Linuxcnc::Command
+
+      self.target = Linuxcnc::Responses::None
+
     end
   end
 end

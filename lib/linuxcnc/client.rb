@@ -2,6 +2,10 @@ module Linuxcnc
   class Client
 
     attr_reader :connection
+    COMMIT_SEQUENCE = "\nget plat\n"
+    COMMIT_EXPECT = /^plat linux/mi
+
+    READ_TIMEOUT = 10
 
     def initialize(host: (ENV["LINUXCNC_HOST"] || "localhost"), port: (ENV["LINUXCNC_PORT"] || 5007))
       @host = host
@@ -13,20 +17,23 @@ module Linuxcnc
       @connection = nil
     end
 
+    def write(string)
+      connection.cmd("String" => string + COMMIT_SEQUENCE, "Match" => COMMIT_EXPECT)
+    end
+
+    def read(string, pattern)
+      connection.cmd("String" => string, "Match" => pattern)
+    end
+
     def establish_connection
-      disconnect if @connection.present?
+      disconnect if connection.present?
       @connection = Net::Telnet::new(
-        "Host"       => @host,           # default: "localhost"
-        "Port"       => @port.to_i,      # default: 23
-        "Telnetmode" => false,           # default: true
-        "Output_log" => "output_log",    # default: nil (no output)
-        "Dump_log"   => "dump_log",      # default: nil (no output)
-        "Timeout"    => 2,               # default: 10
-      # "Binmode"    => false,         # default: false
-      # "Prompt"     => /[$%#>] \z/n,  # default: /[$%#>] \z/n
-      # if ignore timeout then set "Timeout" to false.
-      # "Waittime"   => 0,             # default: 0
-      # "Proxy"      => proxy          # default: nil
+        "Host"       => @host,
+        "Port"       => @port.to_i,
+        "Telnetmode" => false,
+        "Output_log" => "tmp/output_log",
+        "Dump_log"   => "tmp/dump_log",
+        "Timeout"    => READ_TIMEOUT
         )
     end
   end
