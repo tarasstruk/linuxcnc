@@ -1,13 +1,13 @@
 module Linuxcnc
   module Responses
-    class Floats < Linuxcnc::Response
+    class Int < Linuxcnc::Response
 
       def self.pattern
-        /\d+\.\d+/mi
+        /\d+/m
       end
 
       def use_converters
-        [ :downcase, :float ]
+        [ :downcase, :integer ]
       end
 
     end
