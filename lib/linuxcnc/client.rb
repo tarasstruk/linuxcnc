@@ -13,6 +13,7 @@ module Linuxcnc
     end
 
     def disconnect
+      connection.try :write, "quit"
       connection.try :close
       @connection = nil
     end
