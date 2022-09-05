@@ -4,7 +4,8 @@ module Linuxcnc
       DEFAULT_PASSWORD = "EMC".freeze
       CLIENT_ID = "Ruby #{::Linuxcnc::VERSION}".freeze
 
-      self.target = Linuxcnc::Responses::AckNak
+      self.target = Linuxcnc::Responses::Enum
+      self.response_variants = %i[ack nak]
 
       private
 

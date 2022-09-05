@@ -7,13 +7,16 @@ module Linuxcnc
 
     def perform
       answer = @machine.hello.get
-      raise Linuxcnc::Errors::CommandRejected.new("hello") if answer.nak?
+      puts answer
+      raise Linuxcnc::Errors::CommandRejected.new("hello") if answer.include? :nak
       @machine.echo.set :off
       answer = @machine.echo.get
-      raise Linuxcnc::Errors::CommandRejected.new("echo") if answer.on?
+      puts answer
+      raise Linuxcnc::Errors::CommandRejected.new("echo") if answer.include? :on
       @machine.enable.set
       answer = @machine.enable.get
-      raise Linuxcnc::Errors::CommandRejected.new("enable") if answer.off?
+      puts answer.inspect
+      raise Linuxcnc::Errors::CommandRejected.new("enable") unless answer.include? :on
     end
 
   end

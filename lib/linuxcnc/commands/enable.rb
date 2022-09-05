@@ -8,7 +8,8 @@
 module Linuxcnc
   module Commands
     class Enable < Linuxcnc::Command
-      self.target = Linuxcnc::Responses::OnOff
+      self.target = Linuxcnc::Responses::Enum
+      self.response_variants = %i[on off]
 
       DEFAULT_PASSWORD = "EMCTOO".freeze
 

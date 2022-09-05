@@ -2,9 +2,7 @@ module Linuxcnc
   module Responses
     class None < Linuxcnc::Response
 
-      def self.pattern
-        /$/
-      end
+      self.pattern = /$/
 
       def use_converters
         [ ]

@@ -2,6 +2,7 @@ module Linuxcnc
   class Command
 
     class_attribute :target
+    class_attribute :response_variants
 
     attr_reader :client
 
@@ -16,11 +17,15 @@ module Linuxcnc
     def get(params=[])
       string = build_get(params)
       data = client.read(string, read_pattern)
-      target.new(data)
+      get_response.parse(data)
+    end
+
+    def get_response
+      target.new(response_variants)
     end
 
     def read_pattern
-      Regexp.new("^#{name}\\s" + target.pattern.source, Regexp::IGNORECASE | Regexp::MULTILINE)
+      Regexp.new("^#{name}\\s" + get_response.pattern.source, Regexp::IGNORECASE | Regexp::MULTILINE)
     end
 
     def set(params=[])

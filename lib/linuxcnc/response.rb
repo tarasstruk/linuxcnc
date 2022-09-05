@@ -1,6 +1,11 @@
 module Linuxcnc
   class Response
-    attr_reader :value, :error
+
+    class_attribute :pattern
+    class_attribute :use_converters
+    self.use_converters = [ ]
+
+    attr_reader :value, :error, :variants
 
     CONVERTERS = {
       downcase: -> (val) { val.to_s.downcase },
@@ -9,20 +14,17 @@ module Linuxcnc
       symbilize: -> (val) { val.to_s.to_sym },
     }
 
-    def initialize(raw_values)
-      @value = raw_values.scan(pattern).map{|val| convert_raw_value(val) }
+    def initialize(variants=[])
+      @variants = variants
+      @value = []
     end
 
-    def pattern
-      self.class.pattern
+    def parse(server_raw_response)
+      @value = server_raw_response.scan(pattern).map{|val| convert_raw_value(val) }
     end
 
     def converters
       CONVERTERS.fetch_values(*use_converters)
-    end
-
-    def use_converters
-      [ :downcase ]
     end
 
     def convert_raw_value(val)
@@ -31,22 +33,6 @@ module Linuxcnc
         result = converter.call(result)
       end
       result
-    end
-
-    def valid?
-      @error.nil?
-    end
-
-    def invalid?
-      !valid?
-    end
-
-    def blank?
-      @value.nil? || @value.empty?
-    end
-
-    def present?
-      !blank?
     end
   end
 end
