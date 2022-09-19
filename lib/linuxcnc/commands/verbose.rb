@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # verbose {on|off}
 #
 # With get, any on/off parameter is ignored and the current verbose state is returned.
@@ -8,10 +10,8 @@
 module Linuxcnc
   module Commands
     class Verbose < Linuxcnc::Command
-
       self.target = Linuxcnc::Responses::Enum
       self.response_variants = %i[on off]
-
     end
   end
 end

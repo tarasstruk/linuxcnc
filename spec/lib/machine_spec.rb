@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe Linuxcnc::Machine do
-
   describe "#connect" do
     before do
       subject.connect
@@ -33,5 +32,4 @@ RSpec.describe Linuxcnc::Machine do
       expect(subject).to be_enabled
     end
   end
-
 end

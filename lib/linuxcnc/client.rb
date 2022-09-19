@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Linuxcnc
   class Client
-
     attr_reader :connection
+
     COMMIT_SEQUENCE = "\nget plat\n"
-    COMMIT_EXPECT = /^plat linux/mi
+    COMMIT_EXPECT = /^plat linux/mi.freeze
 
     READ_TIMEOUT = 10
 
@@ -28,14 +30,14 @@ module Linuxcnc
 
     def establish_connection
       disconnect if connection.present?
-      @connection = Net::Telnet::new(
-        "Host"       => @host,
-        "Port"       => @port.to_i,
+      @connection = Net::Telnet.new(
+        "Host" => @host,
+        "Port" => @port.to_i,
         "Telnetmode" => false,
         "Output_log" => "tmp/output_log",
-        "Dump_log"   => "tmp/dump_log",
-        "Timeout"    => READ_TIMEOUT
-        )
+        "Dump_log" => "tmp/dump_log",
+        "Timeout" => READ_TIMEOUT
+      )
     end
   end
 end

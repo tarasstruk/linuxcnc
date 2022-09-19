@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Linuxcnc
   module Commands
     class Hello < Linuxcnc::Command
-      DEFAULT_PASSWORD = "EMC".freeze
-      CLIENT_ID = "Ruby #{::Linuxcnc::VERSION}".freeze
+      DEFAULT_PASSWORD = "EMC"
+      CLIENT_ID = "Ruby #{::Linuxcnc::VERSION}"
 
       self.target = Linuxcnc::Responses::Enum
       self.response_variants = %i[ack nak]

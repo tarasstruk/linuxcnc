@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 module Linuxcnc
   class Machine
-
     attr_reader :client, :options
+
     include Commands
 
-
-    def initialize(options: { }, client: Client.new)
+    def initialize(options: {}, client: Client.new)
       @client = client
       @options = options
     end
@@ -33,6 +34,5 @@ module Linuxcnc
     def num_joints
       options.fetch(:num_joints, 3)
     end
-
   end
 end

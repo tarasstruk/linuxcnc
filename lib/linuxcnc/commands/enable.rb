@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # enable {<passwd>|off}
 #
 # The session’s enable state indicates whether the current connection is enabled to perform control functions.
@@ -11,13 +13,11 @@ module Linuxcnc
       self.target = Linuxcnc::Responses::Enum
       self.response_variants = %i[on off]
 
-      DEFAULT_PASSWORD = "EMCTOO".freeze
+      DEFAULT_PASSWORD = "EMCTOO"
 
-
-      def set(params=[DEFAULT_PASSWORD])
+      def set(params = [DEFAULT_PASSWORD])
         super
       end
-
     end
   end
 end

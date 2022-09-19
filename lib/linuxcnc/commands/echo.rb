@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # echo {on|off}
 #
 # With get, any on/off parameter is ignored and the current echo state is returned.
@@ -6,10 +8,8 @@
 module Linuxcnc
   module Commands
     class Echo < Linuxcnc::Command
-
       self.target = Linuxcnc::Responses::Enum
       self.response_variants = %i[on off]
-
     end
   end
 end

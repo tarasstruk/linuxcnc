@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # debug <value>
 #
 # With get, any parameter is ignored and the current integer value of EMC_DEBUG is returned.
@@ -7,9 +9,7 @@
 module Linuxcnc
   module Commands
     class Debug < Linuxcnc::Command
-
       self.target = Linuxcnc::Responses::Int
-
     end
   end
 end

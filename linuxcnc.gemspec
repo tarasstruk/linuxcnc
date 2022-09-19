@@ -30,12 +30,11 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "net-telnet", "~> 0.2"
   spec.add_dependency "activesupport"
+  spec.add_dependency "net-telnet", "~> 0.2"
 
+  spec.add_development_dependency "pry", "~> 0.14"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "rubocop", "~> 1.21"
-  spec.add_development_dependency "pry", "~> 0.14"
-
 end

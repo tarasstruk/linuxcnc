@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 module Linuxcnc
   class Command
-
     class_attribute :target
     class_attribute :response_variants
 
     attr_reader :client
 
-    def initialize(client:, options: { })
+    def initialize(client:, options: {})
       @client = client
     end
 
@@ -14,7 +15,7 @@ module Linuxcnc
       self.class.name.demodulize.underscore
     end
 
-    def get(params=[])
+    def get(params = [])
       string = build_get(params)
       data = client.read(string, read_pattern)
       get_response.parse(data)
@@ -28,7 +29,7 @@ module Linuxcnc
       Regexp.new("^#{name}\\s" + get_response.pattern.source, Regexp::IGNORECASE | Regexp::MULTILINE)
     end
 
-    def set(params=[])
+    def set(params = [])
       string = build_set(params)
       client.write(string)
     end
@@ -42,6 +43,5 @@ module Linuxcnc
     def build_set(params)
       ["set", name, params].flatten.join(" ")
     end
-
   end
 end
