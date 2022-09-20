@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Linuxcnc
+  # Commands look-up and classes dependencies management
   module Commands
     require_relative "response"
     RESPONSES_PATH = File.expand_path(File.join(File.dirname(__FILE__), "responses")).freeze

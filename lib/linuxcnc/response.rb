@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Linuxcnc
+  # Container for LinuxCNC server-response
   class Response
     class_attribute :pattern
     class_attribute :use_converters

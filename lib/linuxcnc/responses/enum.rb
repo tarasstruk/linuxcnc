@@ -2,6 +2,8 @@
 
 module Linuxcnc
   module Responses
+    # this Response contains emumerable values
+    #
     class Enum < Linuxcnc::Response
       self.use_converters = %i[downcase symbilize]
 

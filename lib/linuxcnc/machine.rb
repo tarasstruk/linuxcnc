@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Linuxcnc
+  # Represents a LinuxCNC-machine ednpoint.
+  # all commands and queries originate from this place.
+  #
   class Machine
     attr_reader :client, :options
 

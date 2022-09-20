@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Linuxcnc::Machine do
   describe "#connect" do
     before do
@@ -33,3 +34,4 @@ RSpec.describe Linuxcnc::Machine do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

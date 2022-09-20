@@ -8,7 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["Taras Struk"]
 
   spec.summary = "Ruby interface for LinuxCNC"
-  spec.description = "Ruby toolbelt for LinuxCNC. This library comunicates with LinuxCNC through linuxcncrsh interface controlling lathes, milling machines etc."
+  spec.description = "Ruby toolbelt for LinuxCNC. This library comunicates with LinuxCNC through
+                      linuxcncrsh interface controlling lathes, milling machines etc."
   spec.homepage = "https://github.com/tarasstruk/linuxcnc"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"

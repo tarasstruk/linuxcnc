@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 module Linuxcnc
+  # proxy-class for a LinuxCNC command
   class Command
     class_attribute :target
     class_attribute :response_variants
 
     attr_reader :client
 
-    def initialize(client:, options: {})
+    def initialize(client:, _options: {})
       @client = client
     end
 
@@ -18,15 +19,15 @@ module Linuxcnc
     def get(params = [])
       string = build_get(params)
       data = client.read(string, read_pattern)
-      get_response.parse(data)
+      target_response.parse(data)
     end
 
-    def get_response
+    def target_response
       target.new(response_variants)
     end
 
     def read_pattern
-      Regexp.new("^#{name}\\s" + get_response.pattern.source, Regexp::IGNORECASE | Regexp::MULTILINE)
+      Regexp.new("^#{name}\\s" + target_response.pattern.source, Regexp::IGNORECASE | Regexp::MULTILINE)
     end
 
     def set(params = [])

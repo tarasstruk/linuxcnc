@@ -2,6 +2,14 @@
 
 module Linuxcnc
   module Commands
+    # hello <password> <client> <version>
+    #
+    # <password> must match linuxcncrsh’s connect password, or "EMC" if no --connectpw was supplied.
+    # The three arguments may not contain whitespace. If a valid password was entered the server will respond with:
+    # HELLO ACK <ServerName> <ServerVersion>
+    # If an invalid password or any other syntax error occurs then the server responds with:
+    # HELLO NAK
+    #
     class Hello < Linuxcnc::Command
       DEFAULT_PASSWORD = "EMC"
       CLIENT_ID = "Ruby #{::Linuxcnc::VERSION}"

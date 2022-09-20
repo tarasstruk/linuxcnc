@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Linuxcnc
+  # manages connections to a LinuxCNC host
+  # see http://linuxcnc.org/docs/stable/html/man/man1/linuxcncrsh.1.html
+  #
   class Client
     attr_reader :connection
 
